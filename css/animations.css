@@ -1,0 +1,293 @@
+/* =========================================================
+   Animations Stylesheet for iCashewTech
+   ========================================================= */
+
+/* =========================================================
+   Table of Contents:
+   1. Logo Animation
+   2. Fade-in Animations
+   3. Button Hover Effects
+   4. Counter Animations
+   5. Image Hover Effects
+   6. Loading Animations
+   ========================================================= */
+
+/* =========================================================
+   1. Logo Animation
+   ========================================================= */
+   @keyframes logoPath {
+    0% {
+        stroke-dashoffset: 200;
+        fill-opacity: 0;
+    }
+    60% {
+        fill-opacity: 0;
+    }
+    100% {
+        stroke-dashoffset: 0;
+        fill-opacity: 1;
+    }
+}
+
+@keyframes logoText {
+    0% {
+        opacity: 0;
+        transform: translateX(-10px);
+    }
+    60% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.logo-path {
+    stroke: var(--secondary-color);
+    stroke-width: 2;
+    stroke-dasharray: 200;
+    stroke-dashoffset: 0;
+    fill-opacity: 1;
+    animation: logoPath 2s ease forwards;
+}
+
+.logo svg text {
+    animation: logoText 2.5s ease forwards;
+}
+
+/* Restart animation on hover */
+.logo:hover .logo-path {
+    animation: logoPath 2s ease forwards;
+}
+
+.logo:hover svg text {
+    animation: logoText 2.5s ease forwards;
+}
+
+/* =========================================================
+   2. Fade-in Animations
+   ========================================================= */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInRight {
+    from {
+        opacity: 0;
+        transform: translateX(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes fadeInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.animated {
+    animation-duration: 0.6s;
+    animation-fill-mode: both;
+}
+
+.fadeInUp {
+    animation-name: fadeInUp;
+}
+
+.fadeInRight {
+    animation-name: fadeInRight;
+}
+
+.fadeInLeft {
+    animation-name: fadeInLeft;
+}
+
+/* Delay classes */
+.delay-100 {
+    animation-delay: 0.1s;
+}
+
+.delay-200 {
+    animation-delay: 0.2s;
+}
+
+.delay-300 {
+    animation-delay: 0.3s;
+}
+
+.delay-400 {
+    animation-delay: 0.4s;
+}
+
+.delay-500 {
+    animation-delay: 0.5s;
+}
+
+/* =========================================================
+   3. Button Hover Effects
+   ========================================================= */
+.btn {
+    position: relative;
+    overflow: hidden;
+}
+
+.btn::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 10px;
+    height: 10px;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    opacity: 0;
+    transition: transform 0.5s, opacity 0.3s;
+    z-index: 0;
+}
+
+.btn:active::after {
+    transform: translate(-50%, -50%) scale(20);
+    opacity: 1;
+}
+
+.btn-primary:hover,
+.btn-secondary:hover,
+.btn-outline:hover {
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+}
+
+/* =========================================================
+   4. Counter Animations
+   ========================================================= */
+@keyframes countUp {
+    from {
+        opacity: 0.3;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.counter {
+    animation: countUp 0.3s ease forwards;
+}
+
+/* =========================================================
+   5. Image Hover Effects
+   ========================================================= */
+.product-image img,
+.testimonial-author .author-image img {
+    transition: transform 0.5s ease;
+}
+
+.product-image:hover img {
+    transform: scale(1.05);
+}
+
+.testimonial-author .author-image img:hover {
+    transform: scale(1.1);
+}
+
+.feature-card {
+    position: relative;
+    overflow: hidden;
+}
+
+.feature-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, rgba(46, 125, 50, 0.05), rgba(249, 168, 37, 0.05));
+    transform: scale(0);
+    opacity: 0;
+    transition: transform 0.5s, opacity 0.5s;
+    border-radius: var(--border-radius-md);
+}
+
+.feature-card:hover::before {
+    transform: scale(1);
+    opacity: 1;
+}
+
+/* =========================================================
+   6. Loading Animations
+   ========================================================= */
+@keyframes pulse {
+    0% {
+        transform: scale(0.95);
+        opacity: 0.8;
+    }
+    50% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(0.95);
+        opacity: 0.8;
+    }
+}
+
+.loading {
+    animation: pulse 1.5s infinite ease-in-out;
+}
+
+@keyframes rotate {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.loading-spinner {
+    width: 30px;
+    height: 30px;
+    border: 3px solid rgba(46, 125, 50, 0.1);
+    border-radius: 50%;
+    border-top-color: var(--primary-color);
+    animation: rotate 1s infinite linear;
+    display: inline-block;
+}
+
+/* Smooth scroll effect for page links */
+html {
+    scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion) {
+    html {
+        scroll-behavior: auto;
+    }
+    
+    .animated,
+    .fade-in,
+    .logo-path,
+    .logo svg text,
+    .counter {
+        animation: none !important;
+        transition: none !important;
+    }
+}
